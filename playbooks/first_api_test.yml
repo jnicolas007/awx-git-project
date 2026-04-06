@@ -1,11 +1,11 @@
 - name: URI module test
-  hosts: localhost
+  hosts: all
   connection: local
   gather_facts: false
   become: false
   vars:
-    server: "https://jsonplaceholder.typicode.com"
-    endpoint: "users/1"
+    server: "https://request.in"
+    endpoint: "api/users?page=2"
   tasks:
     - name: Liste des utilisateurs
       ansible.builtin.uri:
