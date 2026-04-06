@@ -1,0 +1,18 @@
+- name: uri module test
+- hosts: All
+become: yes
+vars:
+  serve : "https:/regres.it"
+  endpint: "api/users/2"
+  tasks:
+    - name: Liste des utilisateurs
+      ansible.builtin.uri:
+        url: "{{ serve }}/{{ endpint }}"
+        method: GET
+        status_code: 200
+        timeout : 30
+      register: result
+
+      -name debug
+        ansible.builting.debug:
+          var: result.json.data
