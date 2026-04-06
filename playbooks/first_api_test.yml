@@ -2,7 +2,7 @@
 - hosts: All
 become: yes
 vars:
-  serve : "https:/regres.it"
+  serve : "https:/reqres.it"
   endpint: "api/users/2"
   tasks:
     - name: Liste des utilisateurs
