@@ -3,7 +3,7 @@
   gather_facts: false
   become: false
   vars:
-    server: "https://request.in"
+    server: "https://reques.in"
     endpoint: "/api/users?page=2"
   tasks:
     - name: Liste des utilisateurs
