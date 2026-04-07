@@ -9,6 +9,13 @@
         name: nginx
         state: present
 
+    - name: Deploy nginx site configuration
+      ansible.builtin.copy:
+        src: ../files/nginx_default_site.conf
+        dest: /etc/nginx/sites-available/default
+        mode: "0644"
+      notify: Restart nginx
+
     - name: Ensure nginx is started
       ansible.builtin.service:
         name: nginx
@@ -20,3 +27,9 @@
         src: ../files/index.html
         dest: /var/www/html/index.html
         mode: "0644"
+
+  handlers:
+    - name: Restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
