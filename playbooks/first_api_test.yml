@@ -1,5 +1,5 @@
 - name: URI module test
-  hosts: all
+  hosts: reques.in
   gather_facts: false
   become: false
   vars:
