@@ -1,0 +1,28 @@
+- name: Read JSON from a public API
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    api_url: "https://jsonplaceholder.typicode.com/users/1"
+
+  tasks:
+    - name: Call API with GET
+      ansible.builtin.uri:
+        url: "{{ api_url }}"
+        method: GET
+        return_content: true
+        status_code: 200
+        timeout: 30
+      register: api_result
+
+    - name: Show full JSON response
+      ansible.builtin.debug:
+        var: api_result.json
+
+    - name: Show selected fields
+      ansible.builtin.debug:
+        msg:
+          - "Name: {{ api_result.json.name }}"
+          - "Email: {{ api_result.json.email }}"
+          - "City: {{ api_result.json.address.city }}"
